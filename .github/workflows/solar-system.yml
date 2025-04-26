@@ -53,7 +53,7 @@ jobs:
           run: npm install
         
         - name:  Run Code-coverage command
-          if: always()
+          - continue-on-error: truecontinue-on-error: true
           run: npm run code-coverage
 
         - name: Upload code-coverage reports

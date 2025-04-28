@@ -52,14 +52,14 @@ jobs:
         - name: Docker login and build
           uses: login-action@v3
           with: 
-            registry: ghcr.io
-            username: '${{ github.Naimat250}}'
-            password: '${{ secrets.GITHUB_TOKEN }}'
+           registry: ghcr.io
+           username: '${{ github.Naimat250}}'
+           password: '${{ secrets.GITHUB_TOKEN }}'
         
         - name: Docker push 
           uses: actions/build-push-action@v6
           with: 
-            context: .
-            push: true
-            tags: 'ghcr.io/${{ github.Naimat250 }}/solar-system:${{ github.sha }}' 
+           context: .
+           push: true
+           tags: 'ghcr.io/${{ github.Naimat250 }}/solar-system:${{ github.sha }}' 
 

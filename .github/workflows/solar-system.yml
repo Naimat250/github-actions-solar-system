@@ -1,5 +1,8 @@
 name: Solar System Workflow
-
+env:
+  MONGO_URI: ${{vars.MONGO_URI}}
+  MONGO_USERNAME: ${{vars.MONGO_USERNAME}}
+  MONGO_PASSWORD: ${{secrets.MONGO_PASSWORD}}
 on: 
   workflow_dispatch:
   push:
@@ -30,7 +33,6 @@ jobs:
           run: npm install
     
         - name: Unit Testing
-          if: always()
           run: npm test
           
         - name: Archive Test Result

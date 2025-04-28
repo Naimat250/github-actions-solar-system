@@ -1,4 +1,4 @@
-name: Solar System Workflow
+name: Solar System Workflow using container for node version 
 env:
   MONGO_URI: ${{vars.MONGO_URI}}
   MONGO_USERNAME: ${{vars.MONGO_USERNAME}}

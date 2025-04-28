@@ -40,5 +40,26 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
-
+    
+    docker:
+      name: Docker build and push
+      runs-on: ubuntu-latest
+      needs: unit-testing
+      steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v4
+      
+        - name: Docker login and build
+          uses: login-action@v3
+          with: 
+            registry: ghcr.io
+            username: '${{ github.Naimat250}}'
+            password: '${{ secrets.GITHUB_TOKEN }}'
+        
+        - name: Docker push 
+          uses: actions/build-push-action@v6
+          with: 
+            context: .
+            push: true
+            tags: 'ghcr.io/${{ github.Naimat250 }}/solar-system:${{ github.sha }}' 
 

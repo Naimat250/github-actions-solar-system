@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - 'feature/*'
+      - dev
+
     
 jobs:
     unit-testing:

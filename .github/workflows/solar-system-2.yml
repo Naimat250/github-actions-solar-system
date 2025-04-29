@@ -67,5 +67,28 @@ jobs:
             context: .
             push: true
             tags: 'ghcr.io/${{ env.REPO_OWNER_LC }}/solar-system:${{ github.sha }}'
+    
+    dev-deploy:
+      name: dev-deploy
+      needs: docker 
+      runs-on: ubuntu-latest
+      environment: 
+        name: development
+      steps:
+        - name: Checkout the repo
+          uses: actions/checkout@v4
 
-
+        - name: Setup kubectl 
+          uses: azure/setup-kubectl@v4
+          with:
+            version: 'v1.28.1' # default is latest stable
+          # id: install  
+        
+        - name: Set Context
+          uses: azure/k8s-set-context@v3
+          with: 
+            method: kubeconfig
+            kubeconfig: '${{ secrets.KUBECONFIG }}'
+        
+        - name: Check CLuster Info 
+          run: kubectl version -o yaml
